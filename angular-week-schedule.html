@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="shell">
+    <div class="rows">
+      <div class="row row--side"></div>
+      <div class="row">7:00 am</div>
+      <div class="row">8:00 am</div>
+      <div class="row">9:00 am</div>
+      <div class="row">10:00 am</div>
+      <div class="row">11:00 am</div>
+      <div class="row">12:00 pm</div>
+      <div class="row">1:00 pm</div>
+      <div class="row">2:00 pm</div>
+      <div class="row">3:00 pm</div>
+      <div class="row">4:00 pm</div>
+      <div class="row">5:00 pm</div>
+      <div class="row">6:00 pm</div>
+      <div class="row">7:00 pm</div>
+      <div class="row">8:00 pm</div>
+      <div class="row">9:00 pm</div>
+    </div>
+    <div class="cols">
+      <div class="col col--side"></div>
+      <div class="col">Monday
+        <div ng-repeat="eventBlock in ws.day">
+          <div ng-repeat="event in eventBlock"
+            class="event"
+            ng-style="ws.getEventStyles(event, $index, eventBlock.length)">
+              {{event.name}}
+          </div>
+        </div>
+      </div>
+      <div class="col">Tuesday</div>
+      <div class="col">Wednesday</div>
+      <div class="col">Thursday</div>
+      <div class="col">Friday</div>
+    </div>
+  </div>
+</div>

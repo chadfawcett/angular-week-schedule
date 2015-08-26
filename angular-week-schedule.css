@@ -1,0 +1,58 @@
+.container {
+  position: relative;
+  margin: auto;
+  width: 90%;
+  min-width: 650px;
+  margin-top: 8px;
+}
+
+.shell {
+  position: absolute;
+  outline: solid 1px blue;
+  width: 100%;
+  height: 930px;
+}
+
+.rows {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rows > .row {
+  height: 60px;
+  outline: solid 1px gray;
+}
+
+.rows > .row.row--side {
+  height: 30px;
+}
+
+.cols {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.cols > .col {
+  float: left;
+  width: 18%;
+  height: 100%;
+  outline: solid 1px gray;
+  position: relative;
+}
+
+.cols > .col.col--side {
+  width: 10%;
+}
+
+.cols > .col .event {
+  background-color: rgba(0, 0, 250, 0.3);
+  position: absolute;
+  width: 100%;
+  float: left;
+  text-align: left;
+}
