@@ -5,8 +5,12 @@ function cfWeekScheduleDirective () {
   return {
     restrict: 'E',
     templateUrl: '/angular-week-schedule.html',
+    scope: {
+      events: '='
+    },
     controller: cfWeekScheduleCtrl,
-    controllerAs: 'ws'
+    controllerAs: 'ws',
+    bindToController: true
   }
 }
 
@@ -15,39 +19,7 @@ function cfWeekScheduleCtrl () {
 
   ws.getEventStyles = getEventStyles;
 
-  ws.events = [
-    {
-      start: moment().hour(8).minute(30).second(0).millisecond(0),
-      end: moment().hour(9).minute(20).second(0).millisecond(0),
-      name: 'Comp 1230'
-    },
-    {
-      start: moment().hour(11).minute(30).second(0).millisecond(0),
-      end: moment().hour(12).minute(20).second(0).millisecond(0),
-      name: 'Math 1380'
-    },
-    {
-      start: moment().hour(12).minute(0).second(0).millisecond(0),
-      end: moment().hour(13).minute(30).second(0).millisecond(0),
-      name: 'Math 1390'
-    },
-    {
-      start: moment().hour(15).minute(30).second(0).millisecond(0),
-      end: moment().hour(17).minute(0).second(0).millisecond(0),
-      name: 'Comp 2230'
-    },
-    {
-      start: moment().hour(15).minute(30).second(0).millisecond(0),
-      end: moment().hour(16).minute(20).second(0).millisecond(0),
-      name: 'Cmns 1290'
-    },
-    {
-      start: moment().hour(16).minute(0).second(0).millisecond(0),
-      end: moment().hour(16).minute(45).second(0).millisecond(0),
-      name: 'Cmns 1290'
-    }
 
-  ];
 
   ws.day = [ [ws.events[0]] ];
 
