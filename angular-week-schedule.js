@@ -18,20 +18,36 @@ function cfWeekScheduleCtrl () {
   var ws = this;
 
   ws.getEventStyles = getEventStyles;
+  ws.events         = _.sortBy(ws.events, 'start');
+  ws.daysOfWeek     = 'Monday Tuesday Wednesday Thursday Friday'.split(' ');
+  ws.week           = [[],[],[],[],[]];
 
+  //  Determine starting index of week based on day of first event
+  var firstIndex = ws.events[0].start.day() - 1;
 
+  var day = ws.week[firstIndex];
+  day.push([ws.events[0]]);
 
-  ws.day = [ [ws.events[0]] ];
-
-  for (var i = 1; i < ws.events.length; i++) {
-    var prevRange = moment.range(ws.events[i - 1].start, ws.events[i - 1].end);
-    var currRange = moment.range(ws.events[i].start, ws.events[i].end);
-
-    if (prevRange.overlaps(currRange)) {
-      ws.day[ws.day.length - 1].push(ws.events[i]);
+  //  Each day is a multi dimmensional array with events in the same array
+  //  if their times overlap
+  for (var eventIndex = 1; eventIndex < ws.events.length; eventIndex++) {
+    if (eventsOverlap(ws.events[eventIndex - 1], ws.events[eventIndex])) {
+      day[day.length - 1].push(ws.events[eventIndex]);
     } else {
-      ws.day.push([ws.events[i]]);
+      day.push([ws.events[eventIndex]]);
     }
+
+    //  If there is a next event, get the day of week for that event
+    if (eventIndex + 1 < ws.events.length) {
+      day = ws.week[ws.events[eventIndex + 1].start.day() - 1];
+    }
+  }
+
+  function eventsOverlap (event1, event2) {
+    var range1 = moment.range(event1.start, event1.end);
+    var range2 = moment.range(event2.start, event2.end);
+
+    return range1.overlaps(range2);
   }
 
   function getEventStyles (event, index, count) {

@@ -20,19 +20,15 @@
     </div>
     <div class="cols">
       <div class="col col--side"></div>
-      <div class="col">Monday
-        <div ng-repeat="eventBlock in ws.day">
+      <div class="col" ng-repeat="weekday in ws.daysOfWeek">{{ weekday }}{{$parent.$index}}
+        <div ng-repeat="eventBlock in ws.week[$index]">
           <div ng-repeat="event in eventBlock"
             class="event"
             ng-style="ws.getEventStyles(event, $index, eventBlock.length)">
-              {{event.name}}
+              {{ event.name }}
           </div>
         </div>
       </div>
-      <div class="col">Tuesday</div>
-      <div class="col">Wednesday</div>
-      <div class="col">Thursday</div>
-      <div class="col">Friday</div>
     </div>
   </div>
 </div>
