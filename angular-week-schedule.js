@@ -50,21 +50,21 @@ function cfWeekScheduleCtrl () {
     return range1.overlaps(range2);
   }
 
-  function getEventStyles (event, index, count) {
+  function getEventStyles (calEvent, index, count) {
     var styles = {
-      top: getEventTop(event),
+      top: getEventTop(calEvent),
       left: getEventLeft(index, count),
       width: getEventWidth(count),
-      height: getEventHeight(event)
+      height: getEventHeight(calEvent)
     }
 
     return styles;
   }
 
-  function getEventTop (event) {
+  function getEventTop (calEvent) {
     var offsetPx = 30;
-    var hourPx   = (event.start.hours() - 7) * 60;
-    var minPx    = (event.start.minutes());
+    var hourPx   = (calEvent.start.hours() - 7) * 60;
+    var minPx    = (calEvent.start.minutes());
 
     return offsetPx + hourPx + minPx + 'px';
   }
@@ -81,9 +81,9 @@ function cfWeekScheduleCtrl () {
     return widthPc + '%';
   }
 
-  function getEventHeight (event) {
-    var endPx   = event.end.hours() * 60 + event.end.minutes();
-    var startPx = event.start.hours() * 60 + event.start.minutes();
+  function getEventHeight (calEvent) {
+    var endPx   = calEvent.end.hours() * 60 + calEvent.end.minutes();
+    var startPx = calEvent.start.hours() * 60 + calEvent.start.minutes();
 
     return endPx - startPx + 'px';
   }
